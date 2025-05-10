@@ -1,0 +1,9 @@
+Flask==2.3.3
+Flask-SQLAlchemy==3.0.4
+Flask-Migrate==4.0.3
+Flask-WTF==1.1.1
+Flask-WTF
+WTForms
+
+
+

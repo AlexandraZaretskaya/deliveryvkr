@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Delivery</title>
+</head>
+<body>
+    <h1>Pizza Delivery</h1>
+    <h2>Menu</h2>
+    <ul>
+        {% for product in products %}
+        <li>
+            <h3>{{ product.name }}</h3>
+            <p>{{ product.description }}</p>
+            <p>{{ product.price }} ₽</p>
+            
+            <!-- Добавляем изображение пиццы -->
+            <img src="{{ url_for('static', filename='images/' + product.image_filename) }}" alt="{{ product.name }}" style="width: 200px; height: auto;">
+            
+            <a href="{{ url_for('add_to_cart', product_id=product.id) }}">Add to Cart</a>
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('cart') }}">Go to Cart</a>
+</body>
+</html>
