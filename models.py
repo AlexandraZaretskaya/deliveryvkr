@@ -4,7 +4,7 @@ from datetime import datetime
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
-    orders = db.relationship('Order', backref='user', lazy=True)
+    orders = db.relationship('Order', backref='owner', lazy=True)
 
 class Product(db.Model):
     __tablename__ = 'products'
@@ -29,7 +29,7 @@ class Pizza(Product):
 class Order(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    user = db.relationship('User', backref='orders')
+    user = db.relationship('User', backref='user_orders')
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
 
 class OrderItem(db.Model):

@@ -30,7 +30,7 @@ def admin_login():
             return redirect(url_for('admin_dashboard'))
         else:
             flash('Неверные имя пользователя или пароль', 'error')
-    return render_template('admin_login.html', form=form)
+    return render_template('admin/admin_login.html', form=form)
 
 # Админ панель (главная страница)
 @app.route('/admin/dashboard')
@@ -38,7 +38,7 @@ def admin_dashboard():
     if not session.get('admin_logged_in'):
         return redirect(url_for('admin_login'))
     products = Product.query.all()
-    return render_template('admin_dashboard.html', products=products)
+    return render_template('/admin/admin_dashboard.html', products=products)
 
 # Добавление продукта
 @app.route('/admin/add_product', methods=['GET', 'POST'])
@@ -56,7 +56,7 @@ def add_product():
         db.session.commit()
         flash('Продукт добавлен успешно', 'success')
         return redirect(url_for('admin_dashboard'))
-    return render_template('add_product.html', form=form)
+    return render_template('/admin/add_product.html', form=form)
 
 # Выход из админки
 @app.route('/admin/logout')
